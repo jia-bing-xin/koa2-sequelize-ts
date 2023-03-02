@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "esModuleInterop": true,
+    "target": "esnext",
+    "strict": true,
+    "outDir": "app",
+    "declaration": true,
+    "sourceMap": true,
+    "moduleResolution": "node", //node
+    "baseUrl": ".", //根路径
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+  }
+}
