@@ -10,19 +10,20 @@ const {
   userValidator,
   verifyUser,
   crpytPassword,
+  verifyLogin,
 } = require("@/middleware/user.middleware");
 
 //注册接口
 router.post(
   "/register",
   userValidator,
-  verifyUser,
   isPhoneNumber,
+  verifyUser,
   crpytPassword,
   register
 );
 //登录接口
-router.post("/login", login);
+router.post("/login", userValidator, isPhoneNumber, verifyLogin, login);
 
 module.exports = router;
-export {};
+export { };

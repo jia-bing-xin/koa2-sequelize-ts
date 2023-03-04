@@ -9,7 +9,7 @@ class UserService {
     }
     async getUerInfo(data: any) {
         const res = await User.findOne({
-            attributes: ['user_name'],
+            attributes: ['user_name', 'password'],
             where: { user_name: data.user_name },
         })
         return res ? res.dataValues : null
