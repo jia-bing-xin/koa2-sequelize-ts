@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs')
 const { getUerInfo } = require("../service/user.service");
 const {
     userFormateError,
@@ -29,8 +30,31 @@ const verifyUser = async (ctx: any, next: any) => {
     }
     await next();
 };
+const userRulePassword = async (ctx: any, next: any) => {
+    const { user_name, password } = ctx.request.body;
+    // 合法性
+    if (!user_name || !password) {
+        ctx.app.emit("error", userFormateError, ctx);
+        return;
+    }
+    await next();
+};
+//密码加密
+const crpytPassword = async (ctx: any, next: any) => {
+    const { password } = ctx.request.body
+
+    const salt = bcrypt.genSaltSync(10)
+    // hash保存的是 密文
+    const hash = bcrypt.hashSync(password, salt)
+
+    ctx.request.body.password = hash
+
+    await next()
+}
 module.exports = {
     userValidator,
-    verifyUser
+    verifyUser,
+    crpytPassword,
+    userRulePassword
 }
 export { }

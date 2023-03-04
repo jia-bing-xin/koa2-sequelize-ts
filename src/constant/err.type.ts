@@ -29,9 +29,9 @@ module.exports = {
     message: '密码不匹配',
     result: '',
   },
-  ruleUser: {
+  rulePhone: {
     code: '10007',
-    message: '用户格式不正确',
+    message: '账号格式不正确',
     result: '',
   },
   rulePassword: {
