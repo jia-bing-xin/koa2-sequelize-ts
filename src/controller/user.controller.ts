@@ -22,7 +22,7 @@ class UserController {
       message: "用户登录成功",
       result: {
         ...res,
-        token: jwt.sign(res, JWT_SECRET, { expiresIn: '1d' }),
+        token: jwt.sign(res, JWT_SECRET, { expiresIn: '1800' }),
       },
     }
   }

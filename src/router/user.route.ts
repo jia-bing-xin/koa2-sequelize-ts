@@ -2,13 +2,14 @@ const Router = require("koa-router");
 
 const router = new Router({ prefix: "/users" });
 
+const { isPhoneNumber } = require("@/middleware/common.middleware");
+const { auth } = require('@/middleware/auth.middleware')
+
 const {
   register,
   login,
   changePassword,
 } = require("@/controller/user.controller");
-
-const { isPhoneNumber } = require("@/middleware/common.middleware");
 
 const {
   userValidator,
@@ -35,6 +36,7 @@ router.post(
   "/changePassword",
   userValidator,
   isPhoneNumber,
+  auth,
   verifyChangePassword,
   crpytPassword,
   changePassword
