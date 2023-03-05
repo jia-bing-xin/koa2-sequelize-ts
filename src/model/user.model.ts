@@ -2,10 +2,15 @@ const { DataTypes } = require('sequelize')
 const seq = require('@/db/seq')
 // 创建模型
 const User = seq.define('zd_user', {
-    user_name: {
+    user_phone: {
         type: DataTypes.STRING,
         allowNull: false,//不允许为空
         unique: true,//唯一
+        comment: '手机号,唯一'
+    },
+    user_name: {
+        type: DataTypes.STRING,
+        allowNull: false,//不允许为空
         comment: '用户名,唯一'
     },
     password: {

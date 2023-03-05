@@ -1,27 +1,27 @@
 module.exports = {
-  userFormateError: {
+  userFormateError: (data: string) => ({
     code: '10001',
-    message: '用户名或密码为空',
+    message: `${data}不能为空`,
     result: '',
-  },
+  }),
   userAlreadyExited: {
     code: '10002',
-    message: '用户已经存在',
+    message: '手机号已经存在',
     result: '',
   },
   userRegisterError: {
     code: '10003',
-    message: '用户注册错误',
+    message: '注册错误,请重试',
     result: '',
   },
   userDoesNotExist: {
     code: '10004',
-    message: '用户不存在',
+    message: '手机号不存在',
     result: '',
   },
   userLoginError: {
     code: '10005',
-    message: '用户登录失败',
+    message: '登录失败,请重新登录',
     result: '',
   },
   invalidPassword: {
@@ -31,7 +31,7 @@ module.exports = {
   },
   rulePhone: {
     code: '10007',
-    message: '账号格式不正确',
+    message: '手机号格式不正确',
     result: '',
   },
   rulePassword: {
