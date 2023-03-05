@@ -39,6 +39,11 @@ module.exports = {
     message: '密码格式不正确',
     result: '',
   },
+  rulePasswordIdentical: {
+    code: '10008',
+    message: '新密码与旧密码不能相同',
+    result: '',
+  },
   tokenExpiredError: {
     code: '10101',
     message: 'token已过期',

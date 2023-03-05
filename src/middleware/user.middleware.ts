@@ -6,7 +6,8 @@ const {
   userRegisterError,
   userDoesNotExist,
   userLoginError,
-  invalidPassword
+  invalidPassword,
+  rulePasswordIdentical
 } = require("../constant/err.type");
 //用户名或密码是否为空
 const userValidator = async (ctx: any, next: any) => {
@@ -85,15 +86,20 @@ const verifyLogin = async (ctx: any, next: any) => {
 };
 //修改密码
 const verifyChangePassword = async (ctx: any, next: any) => {
-  // 1. 判断用户是否存在(不存在:报错)
   const { user_phone, oldpassword, newpassword } = ctx.request.body;
+  // 判断原密码与新密码是否相同
+  if (oldpassword == newpassword) {
+    ctx.app.emit("error", rulePasswordIdentical, ctx);
+    return;
+  }
   try {
+  // 判断用户是否存在(不存在:报错)
     const res = await getUerInfo({ user_phone });
     if (!res) {
       ctx.app.emit("error", userDoesNotExist, ctx);
       return;
     }
-    // 2. 密码是否匹配(不匹配: 报错)
+    // 密码是否匹配(不匹配: 报错)
     if (!bcrypt.compareSync(oldpassword, res.password)) {
       ctx.app.emit("error", invalidPassword, ctx);
       return;
