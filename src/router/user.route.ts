@@ -2,8 +2,8 @@ const Router = require("koa-router");
 
 const router = new Router({ prefix: "/users" });
 
-const { isPhoneNumber } = require("@/middleware/common.middleware");
-const { auth } = require('@/middleware/auth.middleware')
+const { isPhoneNumber, isAdmin } = require("@/middleware/common.middleware");
+const { auth } = require("@/middleware/auth.middleware");
 
 const {
   register,
@@ -16,7 +16,7 @@ const {
   verifyUser,
   crpytPassword,
   verifyLogin,
-  verifyChangePassword
+  verifyChangePassword,
 } = require("@/middleware/user.middleware");
 
 //注册接口
@@ -29,7 +29,7 @@ router.post(
   register
 );
 //登录接口
-router.post("/login", userValidator, isPhoneNumber, verifyLogin, login);
+router.post("/login", userValidator, isAdmin, verifyLogin, login);
 
 //密码修改接口
 router.post(
@@ -43,4 +43,4 @@ router.post(
 );
 
 module.exports = router;
-export { };
+export {};
