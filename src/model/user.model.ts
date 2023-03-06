@@ -25,6 +25,8 @@ const User = seq.define('zd_user', {
         comment: '是否为管理员'
     }
 })
+//如果数据库表不存在，则创建数据库表
+User.sync()
 //先删除后创建
 // User.sync({ force: true })
 
